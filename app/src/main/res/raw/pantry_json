@@ -1,0 +1,6 @@
+Product:
+- uuid: String,     - Unikalny identyfikator przesyłki
+- name: String,     - Nazwa towaru
+- quantity: Int,    - Ilość
+- category: String, - Kategoria, np. "Food", "Life Support", "Tools"
+- imageRef: String  - Nazwa obrazka

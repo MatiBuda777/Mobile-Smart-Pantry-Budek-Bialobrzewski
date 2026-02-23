@@ -1,0 +1,72 @@
+[
+  {
+    "uuid": "8f1c2b4e-9a12-4c3d-8f55-1a2b3c4d5e6f",
+    "name": "Oxygen Tank",
+    "quantity": 4,
+    "category": "Life Support",
+    "imageRef": "oxygen_tank.png"
+  },
+  {
+    "uuid": "2a4d6c8e-1b23-4f56-9a78-0b1c2d3e4f50",
+    "name": "Space Ration Pack",
+    "quantity": 20,
+    "category": "Food",
+    "imageRef": "ration_pack.png"
+  },
+  {
+    "uuid": "7b9d1e3f-4a56-4c78-9d10-2e3f4a5b6c7d",
+    "name": "Thermal Blanket",
+    "quantity": 10,
+    "category": "Life Support",
+    "imageRef": "thermal_blanket.png"
+  },
+  {
+    "uuid": "5c7e9f10-2b34-4d56-8e79-1f2a3b4c5d6e",
+    "name": "Repair Toolkit",
+    "quantity": 2,
+    "category": "Tools",
+    "imageRef": "repair_toolkit.png"
+  },
+  {
+    "uuid": "3d5f7a91-4c23-4e67-9f88-2a3b4c5d6e7f",
+    "name": "Hydroponic Nutrient Mix",
+    "quantity": 6,
+    "category": "Food",
+    "imageRef": "nutrient_mix.png"
+  },
+  {
+    "uuid": "9e1f2a3b-5d46-4c78-8a90-3b4c5d6e7f81",
+    "name": "Portable Water Filter",
+    "quantity": 3,
+    "category": "Life Support",
+    "imageRef": "water_filter.png"
+  },
+  {
+    "uuid": "4a6c8e10-7b23-4d56-9f01-4c5d6e7f8a92",
+    "name": "Microgravity Wrench",
+    "quantity": 5,
+    "category": "Tools",
+    "imageRef": "wrench.png"
+  },
+  {
+    "uuid": "6b8d1f23-9c45-4e67-8a12-5d6e7f8a9b03",
+    "name": "Solar Battery Pack",
+    "quantity": 8,
+    "category": "Tools",
+    "imageRef": "battery_pack.png"
+  },
+  {
+    "uuid": "1c3e5a78-2d34-4f56-9b80-6e7f8a9b0c14",
+    "name": "Dehydrated Fruit Mix",
+    "quantity": 15,
+    "category": "Food",
+    "imageRef": "fruit_mix.png"
+  },
+  {
+    "uuid": "0f2a4c68-3b45-4d67-8c90-7f8a9b0c1d25",
+    "name": "CO2 Scrubber Cartridge",
+    "quantity": 12,
+    "category": "Life Support",
+    "imageRef": "co2_scrubber.png"
+  }
+]
