@@ -8,10 +8,10 @@
   },
   {
     "uuid": "2a4d6c8e-1b23-4f56-9a78-0b1c2d3e4f50",
-    "name": "Space Ration Pack",
+    "name": "Emergency Axe",
     "quantity": 20,
     "category": "Food",
-    "imageRef": "ration_pack.png"
+    "imageRef": "emergency_axe.png"
   },
   {
     "uuid": "7b9d1e3f-4a56-4c78-9d10-2e3f4a5b6c7d",
@@ -29,10 +29,10 @@
   },
   {
     "uuid": "3d5f7a91-4c23-4e67-9f88-2a3b4c5d6e7f",
-    "name": "Hydroponic Nutrient Mix",
+    "name": "Yerbamate Clean Lemon Lime",
     "quantity": 6,
     "category": "Food",
-    "imageRef": "nutrient_mix.png"
+    "imageRef": "yerbamate_clean_lemon_lime.png"
   },
   {
     "uuid": "9e1f2a3b-5d46-4c78-8a90-3b4c5d6e7f81",
@@ -53,7 +53,7 @@
     "name": "Solar Battery Pack",
     "quantity": 8,
     "category": "Tools",
-    "imageRef": "battery_pack.png"
+    "imageRef": "solar_battery_pack.png"
   },
   {
     "uuid": "1c3e5a78-2d34-4f56-9b80-6e7f8a9b0c14",
@@ -67,6 +67,6 @@
     "name": "CO2 Scrubber Cartridge",
     "quantity": 12,
     "category": "Life Support",
-    "imageRef": "co2_scrubber.png"
+    "imageRef": "co2_scrubber_gun.png"
   }
 ]

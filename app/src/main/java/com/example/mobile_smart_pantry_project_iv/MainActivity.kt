@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mobile_smart_pantry_project_iv.databinding.ActivityMainBinding
 import com.example.mobile_smart_pantry_project_iv.model.Product
 import kotlinx.serialization.json.Json
@@ -15,7 +16,7 @@ import java.io.File
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    lateinit var listAdapter: ArrayAdapter<String>
+    lateinit var listAdapter: ProductAdapter
     private val productList = mutableListOf<Product>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,13 +32,25 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        listAdapter = ProductAdapter(productList)
+        binding.spaceItemsRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.spaceItemsRecyclerView.adapter = listAdapter
+
+        saveDataFromDBJSON()
         loadFromJson()
+    }
+
+    private fun saveDataFromDBJSON() {
+        // save the data from raw/pantry.json to data/...this project
     }
 
     private fun loadFromJson(){
         try{
             val file = File(filesDir, "pantry.json")
-            if (!file.exists()) return
+            if (!file.exists()){
+                Log.e("JSON", "Plik pantry.json nie istnieje!")
+                return
+            }
 
             val jsonString = file.readText()
             val json = Json { ignoreUnknownKeys = true }
