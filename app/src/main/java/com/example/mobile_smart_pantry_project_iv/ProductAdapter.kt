@@ -23,6 +23,8 @@ class ProductAdapter(
         holder.binding.categoryTextview.text = entry.category
         holder.binding.quantityTextview.text = "Quantity: ${entry.quantity}"
 
+        //if (entry.quantity in 6..< 10) holder.binding.quantityTextview.setTextColor(138421)
+
         val imageResId = when(entry.imageRef){
             "oxygen_tank.png" -> R.drawable.oxygen_tank
             "emergency_axe.png" -> R.drawable.emergency_axe
