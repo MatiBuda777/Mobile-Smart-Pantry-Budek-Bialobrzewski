@@ -1,5 +1,6 @@
 package com.example.mobile_smart_pantry_project_iv
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -21,9 +22,13 @@ class ProductAdapter(
         val entry = products[position]
         holder.binding.nameTextview.text = entry.name
         holder.binding.categoryTextview.text = entry.category
-        holder.binding.quantityTextview.text = "Quantity: ${entry.quantity}"
+        holder.binding.quantityTextview.text = "Quantity: ${if (entry.quantity < 0) 0 else entry.quantity}"
 
-        //if (entry.quantity in 6..< 10) holder.binding.quantityTextview.setTextColor(138421)
+        val colour = if (entry.quantity in 6..10) Color.YELLOW
+                else if (entry.quantity < 5) Color.RED
+                else Color.WHITE
+        holder.binding.nameTextview.setTextColor(colour)
+        holder.binding.quantityTextview.setTextColor(colour)
 
         val imageResId = when(entry.imageRef){
             "oxygen_tank.png" -> R.drawable.oxygen_tank
