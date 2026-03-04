@@ -36,23 +36,19 @@ class MainActivity : AppCompatActivity() {
         binding.spaceItemsRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.spaceItemsRecyclerView.adapter = listAdapter
 
-        saveDataFromDBJSON()
         loadFromJson()
-    }
-
-    private fun saveDataFromDBJSON() {
-        // save the data from raw/pantry.json to data/...this project
     }
 
     private fun loadFromJson(){
         try{
-            val file = File(filesDir, "pantry.json")
-            if (!file.exists()){
-                Log.e("JSON", "Plik pantry.json nie istnieje!")
+            val inputStream = resources.openRawResource(R.raw.pantry)
+            val jsonString = inputStream.bufferedReader().use { it.readText() }
+
+            if (jsonString.isEmpty() || jsonString.isBlank()){
+                Log.e("JSON", "Plik pantry.json jest pusty!")
                 return
             }
 
-            val jsonString = file.readText()
             val json = Json { ignoreUnknownKeys = true }
             val loadedList = json.decodeFromString<List<Product>>(jsonString)
 

@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="horizontal">
 
     <ImageView
@@ -25,13 +25,15 @@
             android:id="@+id/name_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="32sp"
+            android:textColor="@color/item_product_text"
+            android:textSize="30sp"
             android:text="No item"/>
 
         <TextView
             android:id="@+id/category_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/item_product_category"
             android:textSize="18sp"
             android:textStyle="italic"
             android:text="Category"/>
@@ -40,6 +42,7 @@
             android:id="@+id/quantity_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/item_product_text"
             android:textSize="18sp"
             android:text="Quantity: 0"/>
     </LinearLayout>

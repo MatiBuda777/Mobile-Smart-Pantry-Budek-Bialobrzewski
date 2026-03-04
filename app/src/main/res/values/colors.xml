@@ -5,4 +5,6 @@
     <color name="app_bg">#0B0C3E</color>
     <color name="main_title_bg">#7000be</color>
     <color name="recycler_view_bg">#0445e9</color>
+    <color name="item_product_text">#FFFFFF</color>
+    <color name="item_product_category">#FFD500</color>
 </resources>
