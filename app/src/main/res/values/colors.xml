@@ -8,4 +8,6 @@
     <color name="item_product_bg">#1792C8</color>
     <color name="item_product_text">#FFFFFF</color>
     <color name="item_product_category">#FFD500</color>
+    <color name="button_quantity_add">#00C700</color>
+    <color name="button_quantity_subtract">#E70000</color>
 </resources>
