@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     lateinit var listAdapter: ProductAdapter
     private val productList = mutableListOf<Product>()
+    private val categorySet = mutableSetOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +36,8 @@ class MainActivity : AppCompatActivity() {
         listAdapter = ProductAdapter(productList)
         binding.spaceItemsRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.spaceItemsRecyclerView.adapter = listAdapter
+
+        productList.forEach { categorySet.add(it.category) }
 
         loadFromJson()
     }
