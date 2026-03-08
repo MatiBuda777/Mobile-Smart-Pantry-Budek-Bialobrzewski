@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobile_smart_pantry_project_iv.databinding.ItemProductBinding
 import com.example.mobile_smart_pantry_project_iv.model.Product
+import kotlin.compareTo
 
 class ProductAdapter(
     private val products: List<Product>
@@ -24,11 +25,14 @@ class ProductAdapter(
         holder.binding.categoryTextview.text = entry.category
         holder.binding.quantityTextview.text = "Quantity: ${if (entry.quantity < 0) 0 else entry.quantity}"
 
-        val colour = if (entry.quantity in 6..10) Color.YELLOW
-                else if (entry.quantity < 5) Color.RED
-                else Color.WHITE
-        holder.binding.nameTextview.setTextColor(colour)
-        holder.binding.quantityTextview.setTextColor(colour)
+        fun setTextColors(){
+            val colour = if (entry.quantity in 6..10) Color.YELLOW
+            else if (entry.quantity <= 5) Color.RED
+            else Color.WHITE
+            holder.binding.nameTextview.setTextColor(colour)
+            holder.binding.quantityTextview.setTextColor(colour)
+        }
+        setTextColors()
 
         val imageResId = when(entry.imageRef){
             "oxygen_tank.png" -> R.drawable.oxygen_tank
@@ -44,6 +48,19 @@ class ProductAdapter(
             else -> R.drawable.daddy_pig
         }
         holder.binding.productImageview.setImageResource(imageResId)
+
+
+        holder.binding.addButton.setOnClickListener {
+            entry.quantity++
+            holder.binding.quantityTextview.text = "Quantity: ${entry.quantity}"
+            setTextColors()
+        }
+
+        holder.binding.subtractButton.setOnClickListener {
+            if (entry.quantity > 0) entry.quantity--
+            holder.binding.quantityTextview.text = "Quantity: ${entry.quantity}"
+            setTextColors()
+        }
     }
 
     override fun getItemCount(): Int = products.size

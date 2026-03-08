@@ -59,7 +59,6 @@ class MainActivity : AppCompatActivity() {
 
             Toast.makeText(this, "Loaded products from JSON", Toast.LENGTH_SHORT).show()
         } catch (ex: Exception) {
-            Toast.makeText(this, "Load Exception", Toast.LENGTH_SHORT).show()
             Log.e("loadFromJson() exception", "$ex")
             ex.printStackTrace()
         }
@@ -69,7 +68,6 @@ class MainActivity : AppCompatActivity() {
         try {
             //save to JSON
         } catch (ex: Exception){
-            Toast.makeText(this, "Save Exception", Toast.LENGTH_SHORT).show()
             Log.e("saveToJson() exception", "$ex")
             ex.printStackTrace()
         }
