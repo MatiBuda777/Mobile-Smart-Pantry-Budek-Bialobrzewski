@@ -2,6 +2,8 @@ package com.example.mobile_smart_pantry_project_iv
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -12,13 +14,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mobile_smart_pantry_project_iv.databinding.ActivityMainBinding
 import com.example.mobile_smart_pantry_project_iv.model.Product
 import kotlinx.serialization.json.Json
-import java.io.File
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     lateinit var listAdapter: ProductAdapter
     private val productList = mutableListOf<Product>()
     private val categorySet = mutableSetOf<String>()
+    private var selectedCategory: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,14 +35,45 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        listAdapter = ProductAdapter(productList)
+        loadListAdapter()
+        loadFromJson()
+        updateCategories()
+    }
+
+    private fun loadListAdapter(){
+        listAdapter = ProductAdapter(productList, selectedCategory)
         binding.spaceItemsRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.spaceItemsRecyclerView.adapter = listAdapter
+    }
 
+    private fun updateCategories() {
+        categorySet.clear()
         productList.forEach { categorySet.add(it.category) }
 
-        loadFromJson()
+        val spinnerAdapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            categorySet.toList()
+        )
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.categorySpinner.adapter = spinnerAdapter
+        binding.categorySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                selectedCategory = parent?.getItemAtPosition(position) as String
+                loadListAdapter()
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+
+        }
     }
+
 
     private fun loadFromJson(){
         try{

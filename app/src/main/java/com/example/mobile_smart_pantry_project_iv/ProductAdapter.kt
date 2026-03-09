@@ -9,8 +9,13 @@ import com.example.mobile_smart_pantry_project_iv.model.Product
 import kotlin.compareTo
 
 class ProductAdapter(
-    private val products: List<Product>
+    private val products: List<Product>,
+    private val filterByCategory: String?
 ) : RecyclerView.Adapter<ProductViewHolder>() {
+
+    private val filteredProducts = if (filterByCategory != null) {
+        products.filter { product -> product.category == filterByCategory }
+    } else products
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val binding = ItemProductBinding.inflate(
@@ -20,7 +25,8 @@ class ProductAdapter(
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        val entry = products[position]
+        val entry = filteredProducts[position]
+
         holder.binding.nameTextview.text = entry.name
         holder.binding.categoryTextview.text = entry.category
         holder.binding.quantityTextview.text = "Quantity: ${if (entry.quantity < 0) 0 else entry.quantity}"
@@ -63,5 +69,6 @@ class ProductAdapter(
         }
     }
 
-    override fun getItemCount(): Int = products.size
+
+    override fun getItemCount(): Int = filteredProducts.size
 }

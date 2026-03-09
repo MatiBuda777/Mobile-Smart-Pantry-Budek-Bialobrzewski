@@ -2,15 +2,15 @@
   {
     "uuid": "8f1c2b4e-9a12-4c3d-8f55-1a2b3c4d5e6f",
     "name": "Oxygen Tank",
-    "quantity": 4,
+    "quantity": 22,
     "category": "Life Support",
     "imageRef": "oxygen_tank.png"
   },
   {
     "uuid": "2a4d6c8e-1b23-4f56-9a78-0b1c2d3e4f50",
     "name": "Emergency Axe",
-    "quantity": 20,
-    "category": "Food",
+    "quantity": 7,
+    "category": "Tools",
     "imageRef": "emergency_axe.png"
   },
   {
@@ -30,7 +30,7 @@
   {
     "uuid": "3d5f7a91-4c23-4e67-9f88-2a3b4c5d6e7f",
     "name": "Yerbamate Clean Lemon Lime",
-    "quantity": 6,
+    "quantity": 16,
     "category": "Food",
     "imageRef": "yerbamate_clean_lemon_lime.png"
   },
@@ -44,21 +44,21 @@
   {
     "uuid": "4a6c8e10-7b23-4d56-9f01-4c5d6e7f8a92",
     "name": "Microgravity Wrench",
-    "quantity": 5,
+    "quantity": 7,
     "category": "Tools",
     "imageRef": "wrench.png"
   },
   {
     "uuid": "6b8d1f23-9c45-4e67-8a12-5d6e7f8a9b03",
     "name": "Solar Battery Pack",
-    "quantity": 8,
+    "quantity": 18,
     "category": "Tools",
     "imageRef": "solar_battery_pack.png"
   },
   {
     "uuid": "1c3e5a78-2d34-4f56-9b80-6e7f8a9b0c14",
     "name": "Dehydrated Fruit Mix",
-    "quantity": 15,
+    "quantity": 45,
     "category": "Food",
     "imageRef": "fruit_mix.png"
   },
