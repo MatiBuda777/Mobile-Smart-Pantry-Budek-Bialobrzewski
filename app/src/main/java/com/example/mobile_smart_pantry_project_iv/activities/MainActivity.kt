@@ -1,5 +1,6 @@
-package com.example.mobile_smart_pantry_project_iv
+package com.example.mobile_smart_pantry_project_iv.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -11,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mobile_smart_pantry_project_iv.EditProductActivity
+import com.example.mobile_smart_pantry_project_iv.R
+import com.example.mobile_smart_pantry_project_iv.adapter.ProductAdapter
 import com.example.mobile_smart_pantry_project_iv.databinding.ActivityMainBinding
 import com.example.mobile_smart_pantry_project_iv.model.Product
 import kotlinx.serialization.encodeToString
@@ -45,7 +49,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadListAdapter(){
-        listAdapter = ProductAdapter(productList, selectedCategory)
+        listAdapter = ProductAdapter(productList, selectedCategory) { product ->
+            val intent = Intent(this, EditProductActivity::class.java)
+            intent.putExtra("product", product)
+            startActivity(intent)
+        }
         binding.spaceItemsRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.spaceItemsRecyclerView.adapter = listAdapter
     }
@@ -74,7 +82,6 @@ class MainActivity : AppCompatActivity() {
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
-
         }
     }
 
@@ -107,7 +114,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun saveToJson(){
         try {
-            val json = Json {prettyPrint = true}
+            val json = Json { prettyPrint = true }
             val jsonString = json.encodeToString(productList)
 
             val file = File(filesDir, "pantry.json")

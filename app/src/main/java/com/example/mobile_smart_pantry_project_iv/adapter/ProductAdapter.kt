@@ -1,16 +1,19 @@
-package com.example.mobile_smart_pantry_project_iv
+package com.example.mobile_smart_pantry_project_iv.adapter
 
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mobile_smart_pantry_project_iv.adapter.ProductViewHolder
+import com.example.mobile_smart_pantry_project_iv.R
 import com.example.mobile_smart_pantry_project_iv.databinding.ItemProductBinding
 import com.example.mobile_smart_pantry_project_iv.model.Product
-import kotlin.compareTo
 
 class ProductAdapter(
     private val products: List<Product>,
-    private val filterByCategory: String?
+    private val filterByCategory: String?,
+    private val onClick: (Product) -> Unit
 ) : RecyclerView.Adapter<ProductViewHolder>() {
 
     private val filteredProducts = if (filterByCategory != null) {
@@ -26,6 +29,7 @@ class ProductAdapter(
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val entry = filteredProducts[position]
+        holder.bind(entry, onClick)
 
         holder.binding.nameTextview.text = entry.name
         holder.binding.categoryTextview.text = entry.category
@@ -68,7 +72,6 @@ class ProductAdapter(
             setTextColors()
         }
     }
-
 
     override fun getItemCount(): Int = filteredProducts.size
 }
