@@ -10,4 +10,5 @@
     <color name="item_product_category">#AB8300</color>
     <color name="button_quantity_add">#00C700</color>
     <color name="button_quantity_subtract">#E70000</color>
+    <color name="button_save">#008505</color>
 </resources>

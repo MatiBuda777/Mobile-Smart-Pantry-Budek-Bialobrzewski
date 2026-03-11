@@ -13,7 +13,9 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mobile_smart_pantry_project_iv.databinding.ActivityMainBinding
 import com.example.mobile_smart_pantry_project_iv.model.Product
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -38,6 +40,8 @@ class MainActivity : AppCompatActivity() {
         loadListAdapter()
         loadFromJson()
         updateCategories()
+
+        binding.saveToJsonButton.setOnClickListener { saveToJson() }
     }
 
     private fun loadListAdapter(){
@@ -93,7 +97,8 @@ class MainActivity : AppCompatActivity() {
 
             listAdapter.notifyDataSetChanged()
 
-            Toast.makeText(this, "Loaded products from JSON", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Loaded products from JSON", Toast.LENGTH_SHORT)
+                .show()
         } catch (ex: Exception) {
             Log.e("loadFromJson() exception", "$ex")
             ex.printStackTrace()
@@ -102,7 +107,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun saveToJson(){
         try {
-            //save to JSON
+            val json = Json {prettyPrint = true}
+            val jsonString = json.encodeToString(productList)
+
+            val file = File(filesDir, "pantry.json")
+            file.writeText(jsonString)
+
+            Toast.makeText(this, "Saved ${productList.size} products to JSON", Toast.LENGTH_SHORT)
+                .show()
         } catch (ex: Exception){
             Log.e("saveToJson() exception", "$ex")
             ex.printStackTrace()

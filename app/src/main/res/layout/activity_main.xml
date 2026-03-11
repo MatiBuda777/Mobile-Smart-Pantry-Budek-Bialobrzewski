@@ -51,10 +51,18 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/space_items_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="7dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="7dp"
             android:background="@color/recycler_view_bg"
             android:padding="7dp" />
+
+            <Button
+                android:id="@+id/saveToJson_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/button_save"
+                android:text="@string/button_save"
+                />
 
     </LinearLayout>
 </LinearLayout>
