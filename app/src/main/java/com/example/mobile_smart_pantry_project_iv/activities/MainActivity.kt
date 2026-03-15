@@ -8,11 +8,12 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.mobile_smart_pantry_project_iv.EditProductActivity
+import com.example.mobile_smart_pantry_project_iv.activities.EditProductActivity
 import com.example.mobile_smart_pantry_project_iv.R
 import com.example.mobile_smart_pantry_project_iv.adapter.ProductAdapter
 import com.example.mobile_smart_pantry_project_iv.databinding.ActivityMainBinding
@@ -27,14 +28,13 @@ class MainActivity : AppCompatActivity() {
     private val productList = mutableListOf<Product>()
     private val categorySet = mutableSetOf<String>()
     private var selectedCategory: String? = null
+    private var searchViewText: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -49,13 +49,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadListAdapter(){
-        listAdapter = ProductAdapter(productList, selectedCategory) { product ->
+        val editProductLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+
+                if (result.resultCode == RESULT_OK) {
+                    val updatedProduct = result.data?.getSerializableExtra("updatedProduct")
+
+                    if (updatedProduct != null) {
+                        // update the list
+                    }
+                }
+            }
+
+        listAdapter = ProductAdapter(productList, selectedCategory, searchViewText) { product ->
             val intent = Intent(this, EditProductActivity::class.java)
             intent.putExtra("product", product)
-            startActivity(intent)
+            editProductLauncher.launch(intent)
         }
         binding.spaceItemsRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.spaceItemsRecyclerView.adapter = listAdapter
+
+
+
     }
 
     private fun updateCategories() {

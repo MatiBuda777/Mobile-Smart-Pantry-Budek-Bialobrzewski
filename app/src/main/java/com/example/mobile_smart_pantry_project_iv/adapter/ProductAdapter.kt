@@ -13,6 +13,7 @@ import com.example.mobile_smart_pantry_project_iv.model.Product
 class ProductAdapter(
     private val products: List<Product>,
     private val filterByCategory: String?,
+    private val filterByName: String?,
     private val onClick: (Product) -> Unit
 ) : RecyclerView.Adapter<ProductViewHolder>() {
 
