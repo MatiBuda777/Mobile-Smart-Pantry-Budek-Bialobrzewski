@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
@@ -46,35 +47,32 @@ class MainActivity : AppCompatActivity() {
         updateCategories()
 
         binding.saveToJsonButton.setOnClickListener { saveToJson() }
+        binding.productSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                searchViewText = newText?.takeIf { it.isNotBlank() }
+                loadListAdapter()
+                return true
+            }
+        })
     }
 
     private fun loadListAdapter(){
-        val editProductLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-
-                if (result.resultCode == RESULT_OK) {
-                    val updatedProduct = result.data?.getSerializableExtra("updatedProduct")
-
-                    if (updatedProduct != null) {
-                        // update the list
-                    }
-                }
-            }
-
         listAdapter = ProductAdapter(productList, selectedCategory, searchViewText) { product ->
             val intent = Intent(this, EditProductActivity::class.java)
             intent.putExtra("product", product)
-            editProductLauncher.launch(intent)
+            startActivity(intent)
         }
         binding.spaceItemsRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.spaceItemsRecyclerView.adapter = listAdapter
-
-
-
     }
 
     private fun updateCategories() {
         categorySet.clear()
+        categorySet.add("All")
         productList.forEach { categorySet.add(it.category) }
 
         val spinnerAdapter = ArrayAdapter(
@@ -92,6 +90,7 @@ class MainActivity : AppCompatActivity() {
                 id: Long
             ) {
                 selectedCategory = parent?.getItemAtPosition(position) as String
+                if (selectedCategory == "All") selectedCategory = null
                 loadListAdapter()
             }
 

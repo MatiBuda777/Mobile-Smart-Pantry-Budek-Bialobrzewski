@@ -17,9 +17,11 @@ class ProductAdapter(
     private val onClick: (Product) -> Unit
 ) : RecyclerView.Adapter<ProductViewHolder>() {
 
-    private val filteredProducts = if (filterByCategory != null) {
-        products.filter { product -> product.category == filterByCategory }
-    } else products
+    private val filteredProducts = products.filter { product ->
+        (filterByCategory == null || product.category == filterByCategory) &&
+                (filterByName == null || product.name == filterByName)
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val binding = ItemProductBinding.inflate(
