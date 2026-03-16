@@ -2,7 +2,8 @@
 
 **Project**: *Red Planet Pantry (Mars Colony)*
 
-**Status projektu**: PRE-LAUNCH Klient: Alan Musk (CEO of Space-X) 
+**Status projektu**: READY TO LAUNCH
+**Klient**: Alan Musk (CEO of Space-X) 
 
 **Cel**: Przetrwanie pierwszych kolonistów na Marsie.
 
